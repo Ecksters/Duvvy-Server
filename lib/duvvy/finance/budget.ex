@@ -14,5 +14,7 @@ defmodule Duvvy.Finance.Budget do
     budget
     |> cast(attrs, [:title])
     |> validate_required([:title])
+    |> unique_constraint(:title)
+    |> validate_length(:title, max: 40)
   end
 end
