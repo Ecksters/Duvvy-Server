@@ -9,7 +9,12 @@ defmodule Duvvy.Repo.Migrations.CreateCategories do
       timestamps()
     end
 
-    unique_index(:categories, :title)
+    alter table(:categories) do
+      modify :inserted_at, :utc_datetime, default: fragment("NOW()")
+      modify :updated_at, :utc_datetime, default: fragment("NOW()")
+    end
+
+    create unique_index(:categories, :title)
     create index(:categories, [:budget_id])
   end
 end

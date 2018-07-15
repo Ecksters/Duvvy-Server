@@ -4,9 +4,8 @@ defmodule Duvvy.Finance.Category do
 
 
   schema "categories" do
-    field :amount, :decimal
     field :title, :string
-    field :category_id, :id
+    field :budget_id, :id
 
     timestamps()
   end
@@ -14,8 +13,8 @@ defmodule Duvvy.Finance.Category do
   @doc false
   def changeset(category, attrs) do
     category
-    |> cast(attrs, [:title, :amount])
-    |> validate_required([:title, :amount])
+    |> cast(attrs, [:title])
+    |> validate_required([:title])
     |> unique_constraint(:title)
     |> validate_length(:title, max: 40)
   end

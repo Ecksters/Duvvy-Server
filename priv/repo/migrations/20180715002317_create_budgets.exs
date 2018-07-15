@@ -8,6 +8,11 @@ defmodule Duvvy.Repo.Migrations.CreateBudgets do
       timestamps()
     end
 
-    unique_index(:budgets, :title)
+    alter table(:budgets) do
+      modify :inserted_at, :utc_datetime, default: fragment("NOW()")
+      modify :updated_at, :utc_datetime, default: fragment("NOW()")
+    end
+
+    create unique_index(:budgets, :title)
   end
 end
