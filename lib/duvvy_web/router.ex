@@ -13,10 +13,12 @@ defmodule DuvvyWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", DuvvyWeb do
-    pipe_through :browser # Use the default browser stack
+  scope "/api", DuvvyWeb do
+    pipe_through :api
 
-    get "/", PageController, :index
+    resources "/budgets", BudgetController, except: [:new, :edit]
+    resources "/categories", CategoryController, except: [:new, :edit]
+    resources "/transactions", TransactionController, except: [:new, :edit]
   end
 
   # Other scopes may use custom stacks.
