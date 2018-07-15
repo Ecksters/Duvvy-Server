@@ -20,6 +20,14 @@ defmodule DuvvyWeb.CategoryController do
     end
   end
 
+  def create(conn, %{"categories" => categories}) do
+    {_count, results} = Finance.create_categories(categories)
+    conn
+      |> put_status(:created)
+      |> put_resp_header("location", category_path(conn, :index, results))
+      |> render("index.json", %{categories: results})
+  end
+
   def show(conn, %{"id" => id}) do
     category = Finance.get_category!(id)
     render(conn, "show.json", category: category)

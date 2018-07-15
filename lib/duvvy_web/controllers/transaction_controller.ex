@@ -20,6 +20,14 @@ defmodule DuvvyWeb.TransactionController do
     end
   end
 
+  def create(conn, %{"transactions" => transactions}) do
+    {_count, results} = Finance.create_transactions(transactions)
+    conn
+      |> put_status(:created)
+      |> put_resp_header("location", transaction_path(conn, :index, results))
+      |> render("index.json", %{transactions: results})
+  end
+
   def show(conn, %{"id" => id}) do
     transaction = Finance.get_transaction!(id)
     render(conn, "show.json", transaction: transaction)

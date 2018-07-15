@@ -20,6 +20,14 @@ defmodule DuvvyWeb.BudgetController do
     end
   end
 
+  def create(conn, %{"budgets" => budgets}) do
+    {_count, results} = Finance.create_budgets(budgets)
+    conn
+      |> put_status(:created)
+      |> put_resp_header("location", budget_path(conn, :index, results))
+      |> render("index.json", %{budgets: results})
+  end
+
   def show(conn, %{"id" => id}) do
     budget = Finance.get_budget!(id)
     render(conn, "show.json", budget: budget)

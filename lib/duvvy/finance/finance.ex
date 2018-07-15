@@ -56,6 +56,16 @@ defmodule Duvvy.Finance do
   end
 
   @doc """
+  Creates multiple budgets.
+
+  """
+  def create_budgets(budgets \\ []) do
+    Repo.insert_all(Budget, Enum.map(budgets, fn(budget) ->
+        Enum.map(budget, fn({key, value}) -> {String.to_atom(key), value} end)
+    end), [returning: true])
+  end
+
+  @doc """
   Updates a budget.
 
   ## Examples
@@ -149,6 +159,17 @@ defmodule Duvvy.Finance do
     %Category{}
     |> Category.changeset(attrs)
     |> Repo.insert()
+  end
+
+
+  @doc """
+  Creates multiple categories.
+
+  """
+  def create_categories(categories \\ []) do
+    Repo.insert_all(Category, Enum.map(categories, fn(category) ->
+        Enum.map(category, fn({key, value}) -> {String.to_atom(key), value} end)
+    end), [returning: true])
   end
 
   @doc """
@@ -245,6 +266,16 @@ defmodule Duvvy.Finance do
     %Transaction{}
     |> Transaction.changeset(attrs)
     |> Repo.insert()
+  end
+
+  @doc """
+  Creates multiple transactions.
+
+  """
+  def create_transactions(transactions \\ []) do
+    Repo.insert_all(Transaction, Enum.map(transactions, fn(transaction) ->
+        Enum.map(transaction, fn({key, value}) -> {String.to_atom(key), value} end)
+    end), [returning: true])
   end
 
   @doc """
