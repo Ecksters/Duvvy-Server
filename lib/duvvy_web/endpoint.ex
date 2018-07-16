@@ -21,7 +21,7 @@ defmodule DuvvyWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
 
-  plug CORSPlug, origin: ["http://localhost.com:3000", "http://127.0.0.1:3000"]
+  plug CORSPlug
 
   plug DuvvyWeb.Router
 

@@ -1,20 +1,20 @@
-# Duvvy
+# Duvvy Server
+A simple example budgeting application API server using the Phoenix Framework for the Elixir language.
 
-To start your Phoenix server:
+Requires:
+
+  * Development PostgreSQL server, with no username/password requirements (project will use postgres/postgres)
+
+To start the Duvvy Phoenix server:
 
   * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
+  * Create and migrate the database with `mix ecto.create && mix ecto.migrate`
   * Install Node.js dependencies with `cd assets && npm install`
   * Start Phoenix endpoint with `mix phx.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+API calls can be made to [`localhost:4000/api`](http://localhost:4000/api) now.
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+Endpoints include `/api/budgets`, `/api/categories`, and `/api/transactions`. API follows normal REST conventions.
 
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+Currently the dev Duvvy server has CORS enabled for all hosts, so the Duvvy client
+served through `npm start` should be able to access the API without throwing any errors.
