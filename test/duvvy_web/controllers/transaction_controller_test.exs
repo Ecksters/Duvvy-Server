@@ -4,9 +4,9 @@ defmodule DuvvyWeb.TransactionControllerTest do
   alias Duvvy.Finance
   alias Duvvy.Finance.Transaction
 
-  @create_attrs %{amount: "120.5", description: "some description"}
-  @update_attrs %{amount: "456.7", description: "some updated description"}
-  @invalid_attrs %{amount: nil, description: nil}
+  @create_attrs %{amount: "120.5", date: ~D[2010-04-17], description: "some title"}
+  @update_attrs %{amount: "456.7", date: ~D[2011-05-18], description: "some updated title"}
+  @invalid_attrs %{amount: nil, date: nil, description: nil}
 
   def fixture(:transaction) do
     {:ok, transaction} = Finance.create_transaction(@create_attrs)
@@ -33,6 +33,7 @@ defmodule DuvvyWeb.TransactionControllerTest do
       assert json_response(conn, 200)["data"] == %{
         "id" => id,
         "amount" => "120.5",
+        "date" => ~D[2010-04-17],
         "description" => "some description"}
     end
 
@@ -53,6 +54,7 @@ defmodule DuvvyWeb.TransactionControllerTest do
       assert json_response(conn, 200)["data"] == %{
         "id" => id,
         "amount" => "456.7",
+        "date" => ~D[2011-05-18],
         "description" => "some updated description"}
     end
 

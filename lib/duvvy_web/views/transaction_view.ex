@@ -12,6 +12,7 @@ defmodule DuvvyWeb.TransactionView do
 
   def render("transaction.json", %{transaction: transaction}) do
     %{id: transaction.id,
+      date: transaction.date,
       description: transaction.description,
       amount: transaction.amount}
   end

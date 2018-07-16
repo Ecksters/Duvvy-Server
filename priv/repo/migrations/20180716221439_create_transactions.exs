@@ -3,6 +3,7 @@ defmodule Duvvy.Repo.Migrations.CreateTransactions do
 
   def change do
     create table(:transactions) do
+      add :date, :date, null: false
       add :description, :string, null: false
       add :amount, :decimal, null: false
       add :category_id, references(:categories, on_delete: :nothing)

@@ -273,9 +273,16 @@ defmodule Duvvy.Finance do
 
   """
   def create_transactions(transactions \\ []) do
-    Repo.insert_all(Transaction, Enum.map(transactions, fn(transaction) ->
-        Enum.map(transaction, fn({key, value}) -> {String.to_atom(key), value} end)
-    end), [returning: true])
+    prepared_transactions = Enum.map(transactions, fn(transaction) ->
+        Enum.map(transaction, fn({key, value}) ->
+            case {key, value} do
+                {"date", date_string} -> {:date, Ecto.Date.cast!(date_string)}
+                _ -> {String.to_atom(key), value}
+            end
+
+        end)
+    end)
+    Repo.insert_all(Transaction, prepared_transactions, [returning: true])
   end
 
   @doc """

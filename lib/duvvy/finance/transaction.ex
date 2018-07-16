@@ -5,16 +5,19 @@ defmodule Duvvy.Finance.Transaction do
 
   schema "transactions" do
     field :amount, :decimal
+    field :date, :date
     field :description, :string
     field :category_id, :id
 
     timestamps()
   end
 
+
+
   @doc false
   def changeset(transaction, attrs) do
     transaction
-    |> cast(attrs, [:description, :amount])
-    |> validate_required([:description, :amount])
+    |> cast(attrs, [:date, :description, :amount])
+    |> validate_required([:date, :description, :amount])
   end
 end

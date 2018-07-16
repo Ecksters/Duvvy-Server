@@ -188,9 +188,9 @@ defmodule Duvvy.FinanceTest do
   describe "transactions" do
     alias Duvvy.Finance.Transaction
 
-    @valid_attrs %{amount: "120.5", description: "some description"}
-    @update_attrs %{amount: "456.7", description: "some updated description"}
-    @invalid_attrs %{amount: nil, description: nil}
+    @valid_attrs %{amount: "120.5", date: ~D[2010-04-17], description: "some description"}
+    @update_attrs %{amount: "456.7", date: ~D[2011-05-18], description: "some updated description"}
+    @invalid_attrs %{amount: nil, date: nil, title: nil}
 
     def transaction_fixture(attrs \\ %{}) do
       {:ok, transaction} =
@@ -214,6 +214,7 @@ defmodule Duvvy.FinanceTest do
     test "create_transaction/1 with valid data creates a transaction" do
       assert {:ok, %Transaction{} = transaction} = Finance.create_transaction(@valid_attrs)
       assert transaction.amount == Decimal.new("120.5")
+      assert transaction.date == ~D[2010-04-17]
       assert transaction.description == "some description"
     end
 
@@ -226,6 +227,7 @@ defmodule Duvvy.FinanceTest do
       assert {:ok, transaction} = Finance.update_transaction(transaction, @update_attrs)
       assert %Transaction{} = transaction
       assert transaction.amount == Decimal.new("456.7")
+      assert transaction.date == ~D[2011-05-18]
       assert transaction.description == "some updated description"
     end
 
