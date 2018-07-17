@@ -96,6 +96,8 @@ defmodule Duvvy.Finance do
 
   """
   def delete_budget(%Budget{} = budget) do
+    from(c in Duvvy.Finance.Category, where: c.budget_id == ^budget.id, update: [set: [budget_id: nil]])
+    |> Repo.update_all([])
     Repo.delete(budget)
   end
 
@@ -203,6 +205,8 @@ defmodule Duvvy.Finance do
 
   """
   def delete_category(%Category{} = category) do
+    from(t in Duvvy.Finance.Transaction, where: t.category_id == ^category.id, update: [set: [category_id: nil]])
+    |> Repo.update_all([])
     Repo.delete(category)
   end
 
