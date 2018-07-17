@@ -5,7 +5,7 @@ defmodule Duvvy.Finance.Category do
 
   schema "categories" do
     field :title, :string
-    field :budget_id, :id
+    field :budget_id, :id, read_after_writes: true
 
     timestamps()
   end

@@ -14,6 +14,7 @@ defmodule DuvvyWeb.TransactionView do
     %{id: transaction.id,
       date: transaction.date,
       description: transaction.description,
-      amount: transaction.amount}
+      amount: transaction.amount,
+      category_id: transaction.category_id}
   end
 end

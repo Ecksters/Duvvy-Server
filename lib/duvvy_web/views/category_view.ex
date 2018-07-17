@@ -12,6 +12,7 @@ defmodule DuvvyWeb.CategoryView do
 
   def render("category.json", %{category: category}) do
     %{id: category.id,
-      title: category.title}
+      title: category.title,
+      budget_id: category.budget_id}
   end
 end
