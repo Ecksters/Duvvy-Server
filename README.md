@@ -9,7 +9,6 @@ To start the Duvvy Phoenix server:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate the database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `cd assets && npm install`
   * Start Phoenix endpoint with `mix phx.server`
 
 API calls can be made to [`localhost:4000/api`](http://localhost:4000/api) now.
