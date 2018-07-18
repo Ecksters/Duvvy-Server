@@ -4,6 +4,7 @@ defmodule Duvvy.Repo.Migrations.CreateBudgets do
   def change do
     create table(:budgets) do
       add :title, :string, null: false
+      add :goal, :decimal
 
       timestamps()
     end

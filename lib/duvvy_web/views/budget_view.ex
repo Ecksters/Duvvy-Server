@@ -12,6 +12,7 @@ defmodule DuvvyWeb.BudgetView do
 
   def render("budget.json", %{budget: budget}) do
     %{id: budget.id,
-      title: budget.title}
+      title: budget.title,
+      goal: budget.goal}
   end
 end
